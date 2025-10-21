@@ -224,144 +224,7 @@
             line-height: 1.5;
         }
 
-        .database-section {
-            display: none;
-            margin-top: 30px;
-            border-top: 2px solid #333;
-            padding-top: 20px;
-        }
-
-        .database-title {
-            font-weight: 700;
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #007AFF;
-            text-align: center;
-        }
-
-        .registration-item {
-            background-color: #1c1c1e;
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #333;
-        }
-
-        .registration-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .registration-name {
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        .registration-role {
-            background-color: #007AFF;
-            padding: 4px 8px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .registration-details {
-            color: #aaa;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .registration-photo {
-            max-width: 100%;
-            max-height: 120px;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-
-        .empty-database {
-            text-align: center;
-            color: #666;
-            padding: 20px;
-            font-style: italic;
-        }
-
-        .admin-login {
-            display: none;
-            background-color: #1c1c1e;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 20px;
-            border: 2px solid #007AFF;
-        }
-
-        .admin-title {
-            font-weight: 700;
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #007AFF;
-            text-align: center;
-        }
-
-        .password-input {
-            margin-bottom: 15px;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 12px;
-            background-color: #007AFF;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .admin-controls {
-            display: none;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .admin-btn {
-            padding: 10px 20px;
-            margin: 5px;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .admin-btn.export {
-            background-color: #30D158;
-        }
-
-        .admin-btn.clear {
-            background-color: #FF453A;
-        }
-
-        .admin-btn.view {
-            background-color: #007AFF;
-        }
-
-        .secret-admin-access {
-            position: absolute;
-            top: 15px;
-            right: 30px;
-            width: 50px;
-            height: 30px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 100;
-        }
-
-        .developer-guide {
-            display: none;
+        .email-section {
             background: linear-gradient(135deg, #007AFF, #5856D6);
             padding: 15px;
             border-radius: 12px;
@@ -369,75 +232,100 @@
             text-align: center;
         }
 
-        .guide-title {
+        .email-title {
             font-weight: 700;
             font-size: 16px;
             margin-bottom: 10px;
         }
 
-        .guide-steps {
-            text-align: right;
-            font-size: 14px;
-            line-height: 1.6;
+        .data-section {
+            display: none;
+            background-color: #1c1c1e;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 2px solid #30D158;
         }
 
-        .connection-status {
+        .data-title {
+            font-weight: 700;
+            color: #30D158;
             text-align: center;
-            margin: 10px 0;
-            padding: 8px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 18px;
         }
 
-        .status-connected {
+        .data-content {
+            background-color: #000;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 14px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            text-align: right;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .copy-btn {
+            background-color: #007AFF;
+            color: white;
+        }
+
+        .email-btn {
             background-color: #30D158;
             color: white;
         }
 
-        .status-offline {
-            background-color: #FF9F0A;
+        .whatsapp-btn {
+            background-color: #25D366;
             color: white;
         }
 
-        .backup-notice {
+        .step-instructions {
             background-color: #1c1c1e;
-            padding: 10px;
+            padding: 12px;
             border-radius: 8px;
-            margin-top: 10px;
-            text-align: center;
+            margin-top: 15px;
             font-size: 12px;
-            color: #ff0a0a;
-            border: 1px solid #ff0a0a;
+            line-height: 1.5;
+            border-right: 4px solid #007AFF;
+        }
+
+        .step-number {
+            background-color: #007AFF;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 5px;
+            font-size: 10px;
         }
     </style>
 </head>
 <body>
     <div class="phone-container">
         <div class="phone-notch"></div>
-        
-        <!-- زر سري للمبرمج -->
-        <button class="secret-admin-access" onclick="showAdminLogin()" title="وصول المبرمج"></button>
 
         <div class="screen">
             <div class="header">
                 <div class="logo">يلا زوم</div>
                 <div class="subtitle">التسجيل في برنامج راب زوم</div>
-            </div>
-
-            <!-- حالة الاتصال -->
-            <div class="connection-status status-offline" id="connectionStatus">
-                💾 وضع التخزين المحلي
-            </div>
-
-            <!-- دليل المبرمج -->
-            <div class="developer-guide" id="developerGuide">
-                <div class="guide-title">سجل للنجوميه خلي بالك تسجيل مرة واحده  </div>
-                <div class="guide-steps">
-                    <div><strong></strong></div>
-                    <div> </div>
-                    <div></div>
-                </div>
             </div>
             
             <div id="formSection">
@@ -471,87 +359,84 @@
                         <input type="text" id="contact" name="contact" required placeholder="example@gmail.com أو 0123456789">
                     </div>
                     
-                    <button type="submit" class="submit-btn" id="submitBtn">تسجيل المشاركة</button>
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        إنشاء رسالة التسجيل
+                    </button>
                     
                     <div class="loading" id="loading">
-                        ⏳ جاري حفظ البيانات...
+                        ⏳ جاري تحضير رسالة التسجيل...
                     </div>
                     
                     <div class="success-message" id="successMessage">
-                        ✅ تم تسجيلك بنجاح في برنامج راب زوم!
+                        ✅ تم إنشاء رسالة التسجيل بنجاح
                     </div>
                     
                     <div class="error-message" id="errorMessage">
-                        ❌ حدث خطأ أثناء التسجيل. يرجى المحاولة مرة أخرى.
-                    </div>
-
-                    <div class="backup-notice">
-                        💡 ملاحظة: البيانات تحفظ على هذا الجهاز فقط
+                        ❌ حدث خطأ. يرجى المحاولة مرة أخرى.
                     </div>
                 </form>
 
-                <!-- قسم التحكم للمبرمج -->
-                <div class="admin-login" id="adminLogin">
-                    <div class="admin-title">🔧 دخول المبرمج</div>
-                    <div class="form-group password-input">
-                        <input type="password" id="adminPassword" placeholder="أدخل كلمة المرور" style="text-align: center;">
+                <!-- قسم البيانات الجاهزة للإرسال -->
+                <div class="data-section" id="dataSection">
+                    <div class="data-title">📋 رسالة التسجيل الجاهزة</div>
+                    
+                    <div class="data-content" id="dataContent">
+                        جاري تحضير البيانات...
                     </div>
-                    <button class="login-btn" onclick="checkAdminPassword()">دخول</button>
-                    <div class="error-message" id="adminError" style="display: none;">
-                        كلمة المرور غير صحيحة
+                    
+                    <div class="action-buttons">
+                        <button class="action-btn copy-btn" onclick="copyDataToClipboard()">
+                            📋 نسخ
+                        </button>
+                        <a id="emailLink" class="action-btn email-btn">
+                            📧 إيميل
+                        </a>
+                        <a id="whatsappLink" class="action-btn whatsapp-btn">
+                            💬 واتساب
+                        </a>
+                    </div>
+                    
+                    <div class="step-instructions">
+                        <span class="step-number">1</span>
+                        انقر "نسخ" لنسخ الرسالة<br>
+                        <span class="step-number">2</span>
+                        انقر "إيميل" لفتح بريد جديد<br>
+                        <span class="step-number">3</span>
+                        الصق الرسالة وأرفق الصورة<br>
+                        <span class="step-number">4</span>
+                        أرسل إلى: <strong>rapzoum@gmail.com</strong>
                     </div>
                 </div>
 
-                <div class="admin-controls" id="adminControls">
-                    <div class="admin-title">🎛️ لوحة تحكم المبرمج</div>
-                    <button class="admin-btn view" onclick="showDatabase()">👥 عرض المسجلين</button>
-                    <button class="admin-btn export" onclick="exportData()">💾 تصدير البيانات</button>
-                    <button class="admin-btn clear" onclick="clearData()">🗑️ مسح الكل</button>
-                    <button class="admin-btn" onclick="hideAdmin()">❌ إخفاء</button>
-                    
-                    <div style="margin-top: 15px; font-size: 12px; color: #aaa;">
-                        📊 إجمالي المسجلين: <span id="totalRegistrations">0</span>
+                <div class="email-section">
+                    <div class="email-title">📧 إرسال البيانات إلى</div>
+                    <div style="font-size: 18px; font-weight: 700; margin: 10px 0;">
+                        rapzoum@gmail.com
+                    </div>
+                    <div style="font-size: 14px;">
+                        سيتم إرسال: الاسم + الصورة + الدور + وسيلة التواصل
                     </div>
                 </div>
 
                 <div class="instructions">
-                    <strong>معلومات للمستخدم:</strong><br>
-                    - املأ النموذج للتسجيل في برنامج راب زوم<br>
-                    - البيانات تحفظ على هذا الجهاز<br>
-                    - للتسجيل من أجهزة أخرى، افتح الموقع على كل جهاز
+                    <strong>طريقة العمل:</strong><br>
+                    1. املأ النموذج وارفع صورتك<br>
+                    2. اضغط "إنشاء رسالة التسجيل"<br>
+                    3. انسخ الرسالة الجاهزة<br>
+                    4. أرسلها إلى الإيميل مع الصورة<br>
+                    5. سيتم التواصل معك قريباً
                 </div>
-            </div>
-
-            <div class="database-section" id="databaseSection">
-                <div class="database-title">📊 قائمة المسجلين في راب زوم</div>
-                <div style="text-align: center; margin-bottom: 15px; color: #007AFF;">
-                    إجمالي المسجلين: <strong id="registrationsCount">0</strong>
-                </div>
-                <div id="registrationsList"></div>
-                <button class="admin-btn" onclick="showForm()" style="width: 100%; margin-top: 15px;">
-                    ↩ العودة للتحكم
-                </button>
             </div>
             
             <div class="footer">
-                © 2025 يلا زوم - جميع الحقوق محفوظة
+                © 2023 يلا زوم - جميع الحقوق محفوظة
             </div>
         </div>
     </div>
 
     <script>
-        let currentPhotoDataUrl = '';
-        const ADMIN_PASSWORD = "120";
-
-        // عند تحميل الصفحة
-        window.addEventListener('load', function() {
-            document.getElementById('developerGuide').style.display = 'block';
-            setTimeout(() => {
-                document.getElementById('developerGuide').style.display = 'none';
-            }, 8000);
-            
-            updateRegistrationsCount();
-        });
+        let currentPhotoFile = null;
+        let currentEmailContent = '';
 
         // اختيار الدور
         document.querySelectorAll('.role-option').forEach(option => {
@@ -571,16 +456,15 @@
         
         document.getElementById('photoInput').addEventListener('change', function(e) {
             if (e.target.files.length > 0) {
-                const file = e.target.files[0];
-                document.querySelector('.upload-text').textContent = file.name;
+                currentPhotoFile = e.target.files[0];
+                document.querySelector('.upload-text').textContent = currentPhotoFile.name;
                 
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    currentPhotoDataUrl = e.target.result;
-                    document.getElementById('photoPreview').src = currentPhotoDataUrl;
+                    document.getElementById('photoPreview').src = e.target.result;
                     document.getElementById('photoPreview').style.display = 'block';
                 }
-                reader.readAsDataURL(file);
+                reader.readAsDataURL(currentPhotoFile);
             }
         });
         
@@ -596,7 +480,6 @@
             
             const name = document.getElementById('name').value.trim();
             const contact = document.getElementById('contact').value.trim();
-            const photoFile = document.getElementById('photoInput').files[0];
             
             if (!name) {
                 alert('يرجى إدخال الاسم');
@@ -608,187 +491,125 @@
                 return;
             }
             
-            if (!photoFile) {
+            if (!currentPhotoFile) {
                 alert('يرجى رفع الصورة الشخصية');
                 return;
             }
             
-            // تعطيل الزر أثناء الإرسال
+            // تعطيل الزر أثناء المعالجة
             document.getElementById('submitBtn').disabled = true;
             document.getElementById('loading').style.display = 'block';
             document.getElementById('successMessage').style.display = 'none';
             document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('dataSection').style.display = 'none';
             
-            // استخدام setTimeout لمحاكاة عملية الحفظ
+            // معالجة البيانات
             setTimeout(() => {
                 try {
                     const role = document.getElementById('role').value;
                     const timestamp = new Date().toLocaleString('ar-EG');
                     
-                    // إنشاء كائن البيانات
-                    const registrationData = {
-                        id: Date.now(), // استخدام الطابع الزمني كمعرف فريد
-                        name: name,
-                        role: role,
-                        contact: contact,
-                        photo: currentPhotoDataUrl,
-                        timestamp: timestamp
-                    };
+                    // إنشاء محتوى الرسالة
+                    currentEmailContent = `
+🎤 طلب تسجيل في برنامج راب زوم 🎤
+
+👤 الاسم: ${name}
+🎭 الدور: ${role}
+📞 التواصل: ${contact}
+🖼️ الصورة: ${currentPhotoFile.name}
+🕒 وقت التسجيل: ${timestamp}
+
+📍 تم إرسال هذا الطلب عبر موقع يلا زوم
+📧 يرجى الرد على هذا البريد للتأكيد
+
+                    `.trim();
+
+                    // عرض البيانات
+                    document.getElementById('dataContent').textContent = currentEmailContent;
                     
-                    // حفظ البيانات في localStorage
-                    saveRegistration(registrationData);
+                    // إنشاء روابط الإرسال
+                    createSharingLinks(name, currentEmailContent);
                     
-                    // إظهار رسالة النجاح
+                    // إظهار النتائج
                     document.getElementById('loading').style.display = 'none';
                     document.getElementById('successMessage').style.display = 'block';
+                    document.getElementById('dataSection').style.display = 'block';
                     
-                    // تحديث العداد
-                    updateRegistrationsCount();
-                    
-                    // إعادة تعيين النموذج بعد 3 ثواني
+                    // نسخ البيانات تلقائياً
                     setTimeout(() => {
-                        document.getElementById('registrationForm').reset();
-                        document.querySelectorAll('.role-option').forEach(opt => {
-                            opt.classList.remove('selected');
-                        });
-                        document.querySelector('.upload-text').textContent = 'انقر لرفع صورتك';
-                        document.getElementById('photoPreview').style.display = 'none';
-                        currentPhotoDataUrl = '';
-                        document.getElementById('successMessage').style.display = 'none';
-                        document.getElementById('submitBtn').disabled = false;
-                    }, 3000);
+                        copyDataToClipboard();
+                    }, 1000);
                     
                 } catch (error) {
-                    // في حالة حدوث خطأ
                     document.getElementById('loading').style.display = 'none';
                     document.getElementById('errorMessage').style.display = 'block';
                     document.getElementById('submitBtn').disabled = false;
                     console.error('Error:', error);
                 }
-            }, 1500); // محاكاة وقت الانتظار
+            }, 1500);
         });
 
-        // دالة لحفظ التسجيل في localStorage
-        function saveRegistration(registrationData) {
-            try {
-                let registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
-                registrations.push(registrationData);
-                localStorage.setItem('rapZoomRegistrations', JSON.stringify(registrations));
-                return true;
-            } catch (error) {
-                console.error('Error saving registration:', error);
-                return false;
-            }
+        // دالة إنشاء روابط المشاركة
+        function createSharingLinks(name, content) {
+            // رابط الإيميل
+            const emailSubject = `طلب تسجيل في راب زوم - ${name}`;
+            const emailBody = encodeURIComponent(content);
+            document.getElementById('emailLink').href = `mailto:rapzoum@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${emailBody}`;
+            
+            // رابط واتساب
+            const whatsappText = encodeURIComponent(content);
+            document.getElementById('whatsappLink').href = `https://wa.me/?text=${whatsappText}`;
         }
 
-        // دالة لتحديث عدد المسجلين
-        function updateRegistrationsCount() {
-            try {
-                const registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
-                document.getElementById('totalRegistrations').textContent = registrations.length;
-                document.getElementById('registrationsCount').textContent = registrations.length;
-            } catch (error) {
-                console.error('Error updating count:', error);
-            }
-        }
-
-        // دالة لعرض قاعدة البيانات
-        function showDatabase() {
-            try {
-                document.getElementById('formSection').style.display = 'none';
-                document.getElementById('databaseSection').style.display = 'block';
+        // دالة نسخ البيانات
+        function copyDataToClipboard() {
+            navigator.clipboard.writeText(currentEmailContent).then(() => {
+                // تغيير زر النسخ مؤقتاً
+                const copyBtn = document.querySelector('.copy-btn');
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = '✅ تم النسخ!';
+                copyBtn.style.backgroundColor = '#30D158';
                 
-                const registrationsList = document.getElementById('registrationsList');
-                const registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
-                
-                if (registrations.length === 0) {
-                    registrationsList.innerHTML = '<div class="empty-database">لا توجد تسجيلات حتى الآن</div>';
-                    return;
-                }
-                
-                registrationsList.innerHTML = '';
-                registrations.forEach(reg => {
-                    const registrationItem = document.createElement('div');
-                    registrationItem.className = 'registration-item';
-                    registrationItem.innerHTML = `
-                        <div class="registration-header">
-                            <div class="registration-name">${reg.name}</div>
-                            <div class="registration-role">${reg.role}</div>
-                        </div>
-                        <div class="registration-details">
-                            <div>📞 ${reg.contact}</div>
-                            <div>🕒 ${reg.timestamp}</div>
-                        </div>
-                        ${reg.photo ? `<img src="${reg.photo}" class="registration-photo" alt="صورة ${reg.name}">` : ''}
-                    `;
-                    registrationsList.appendChild(registrationItem);
-                });
-            } catch (error) {
-                console.error('Error showing database:', error);
-                alert('خطأ في عرض البيانات');
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                    copyBtn.style.backgroundColor = '#007AFF';
+                }, 2000);
+            }).catch(err => {
+                alert('تعذر نسخ البيانات، يرجى نسخها يدوياً');
+            });
+        }
+
+        // دالة إعادة تعيين النموذج
+        function resetForm() {
+            document.getElementById('registrationForm').reset();
+            document.querySelectorAll('.role-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            document.querySelector('.upload-text').textContent = 'انقر لرفع صورتك';
+            document.getElementById('photoPreview').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('dataSection').style.display = 'none';
+            document.getElementById('submitBtn').disabled = false;
+            currentPhotoFile = null;
+            currentEmailContent = '';
+        }
+
+        // إضافة زر لإعادة التعيين
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('copy-btn') || 
+                e.target.classList.contains('email-btn') || 
+                e.target.classList.contains('whatsapp-btn')) {
+                // إعادة تعيين النموذج بعد 10 ثواني من أي عملية إرسال
+                setTimeout(() => {
+                    resetForm();
+                }, 10000);
             }
-        }
+        });
 
-        // دالة للعودة إلى النموذج
-        function showForm() {
-            document.getElementById('databaseSection').style.display = 'none';
-            document.getElementById('formSection').style.display = 'block';
-        }
-
-        // وظائف التحكم للمبرمج
-        function showAdminLogin() {
-            document.getElementById('adminLogin').style.display = 'block';
-            document.getElementById('developerGuide').style.display = 'block';
-        }
-
-        function checkAdminPassword() {
-            const password = document.getElementById('adminPassword').value;
-            if (password === ADMIN_PASSWORD) {
-                document.getElementById('adminLogin').style.display = 'none';
-                document.getElementById('adminControls').style.display = 'block';
-                document.getElementById('adminError').style.display = 'none';
-                document.getElementById('developerGuide').style.display = 'none';
-                updateRegistrationsCount();
-            } else {
-                document.getElementById('adminError').style.display = 'block';
-            }
-        }
-
-        function hideAdmin() {
-            document.getElementById('adminControls').style.display = 'none';
-            document.getElementById('adminPassword').value = '';
-        }
-
-        function exportData() {
-            try {
-                const registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
-                const dataStr = JSON.stringify(registrations, null, 2);
-                const dataBlob = new Blob([dataStr], { type: 'application/json' });
-                const url = URL.createObjectURL(dataBlob);
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = 'rap_zoom_registrations.json';
-                link.click();
-                alert('تم تصدير البيانات بنجاح!');
-            } catch (error) {
-                alert('خطأ في تصدير البيانات');
-            }
-        }
-
-        function clearData() {
-            if (confirm('⚠️ هل أنت متأكد من مسح جميع البيانات؟ لا يمكن التراجع عن هذا الإجراء!')) {
-                try {
-                    localStorage.removeItem('rapZoomRegistrations');
-                    alert('تم مسح جميع البيانات');
-                    updateRegistrationsCount();
-                    if (document.getElementById('databaseSection').style.display === 'block') {
-                        showDatabase();
-                    }
-                } catch (error) {
-                    alert('خطأ في مسح البيانات');
-                }
-            }
-        }
+        // تهيئة أولية
+        window.addEventListener('load', function() {
+            console.log('موقع يلا زوم جاهز للتسجيل!');
+        });
     </script>
 </body>
 </html>
