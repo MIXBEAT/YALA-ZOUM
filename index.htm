@@ -173,6 +173,11 @@
             background-color: #0056CC;
         }
         
+        .submit-btn:disabled {
+            background-color: #333;
+            cursor: not-allowed;
+        }
+        
         .footer {
             text-align: center;
             margin-top: 30px;
@@ -375,13 +380,43 @@
             font-size: 14px;
             line-height: 1.6;
         }
+
+        .connection-status {
+            text-align: center;
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-connected {
+            background-color: #30D158;
+            color: white;
+        }
+
+        .status-offline {
+            background-color: #FF9F0A;
+            color: white;
+        }
+
+        .backup-notice {
+            background-color: #1c1c1e;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: #ff0a0a;
+            border: 1px solid #ff0a0a;
+        }
     </style>
 </head>
 <body>
     <div class="phone-container">
         <div class="phone-notch"></div>
         
-        <!-- زر سري للمبرمج - النقر عليه يفتح لوحة التحكم -->
+        <!-- زر سري للمبرمج -->
         <button class="secret-admin-access" onclick="showAdminLogin()" title="وصول المبرمج"></button>
 
         <div class="screen">
@@ -390,13 +425,18 @@
                 <div class="subtitle">التسجيل في برنامج راب زوم</div>
             </div>
 
+            <!-- حالة الاتصال -->
+            <div class="connection-status status-offline" id="connectionStatus">
+                💾 وضع التخزين المحلي
+            </div>
+
             <!-- دليل المبرمج -->
             <div class="developer-guide" id="developerGuide">
-                <div class="guide-title">
+                <div class="guide-title">سجل للنجوميه خلي بالك تسجيل مرة واحده  </div>
                 <div class="guide-steps">
-                   سجل الان <strong></strong></div>
-                    <div>    </div>
-                    <div>    </div>
+                    <div><strong></strong></div>
+                    <div> </div>
+                    <div></div>
                 </div>
             </div>
             
@@ -431,7 +471,7 @@
                         <input type="text" id="contact" name="contact" required placeholder="example@gmail.com أو 0123456789">
                     </div>
                     
-                    <button type="submit" class="submit-btn">تسجيل المشاركة</button>
+                    <button type="submit" class="submit-btn" id="submitBtn">تسجيل المشاركة</button>
                     
                     <div class="loading" id="loading">
                         ⏳ جاري حفظ البيانات...
@@ -443,6 +483,10 @@
                     
                     <div class="error-message" id="errorMessage">
                         ❌ حدث خطأ أثناء التسجيل. يرجى المحاولة مرة أخرى.
+                    </div>
+
+                    <div class="backup-notice">
+                        💡 ملاحظة: البيانات تحفظ على هذا الجهاز فقط
                     </div>
                 </form>
 
@@ -473,8 +517,8 @@
                 <div class="instructions">
                     <strong>معلومات للمستخدم:</strong><br>
                     - املأ النموذج للتسجيل في برنامج راب زوم<br>
-                    - البيانات تحفظ تلقائياً في النظام<br>
-                    - للتسجيل فقط، لا حاجة لعرض البيانات
+                    - البيانات تحفظ على هذا الجهاز<br>
+                    - للتسجيل من أجهزة أخرى، افتح الموقع على كل جهاز
                 </div>
             </div>
 
@@ -490,26 +534,26 @@
             </div>
             
             <div class="footer">
-                © 2025 يلا زوم - جميع الحقوق محفوظة
+                © 2023 يلا زوم - جميع الحقوق محفوظة
             </div>
         </div>
     </div>
 
     <script>
         let currentPhotoDataUrl = '';
-        const ADMIN_PASSWORD = "00110022"; // كلمة المرور السرية للمبرمج
+        const ADMIN_PASSWORD = "120";
 
-        // عند تحميل الصفحة، إظهار دليل المبرمج لفترة وجيزة
+        // عند تحميل الصفحة
         window.addEventListener('load', function() {
             document.getElementById('developerGuide').style.display = 'block';
             setTimeout(() => {
                 document.getElementById('developerGuide').style.display = 'none';
-            }, 10000); // يختفي بعد 10 ثواني
+            }, 8000);
             
             updateRegistrationsCount();
         });
 
-        // اختيار الدور (رابر أو بروديوسر)
+        // اختيار الدور
         document.querySelectorAll('.role-option').forEach(option => {
             option.addEventListener('click', function() {
                 document.querySelectorAll('.role-option').forEach(opt => {
@@ -520,7 +564,7 @@
             });
         });
         
-        // رفع الصورة وعرض معاينة
+        // رفع الصورة
         document.getElementById('photoUpload').addEventListener('click', function() {
             document.getElementById('photoInput').click();
         });
@@ -530,7 +574,6 @@
                 const file = e.target.files[0];
                 document.querySelector('.upload-text').textContent = file.name;
                 
-                // عرض معاينة الصورة
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     currentPhotoDataUrl = e.target.result;
@@ -545,47 +588,46 @@
         document.getElementById('registrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // التحقق من اختيار الدور
+            // التحقق من البيانات
             if (!document.getElementById('role').value) {
                 alert('يرجى اختيار دورك (رابر أو بروديوسر)');
                 return;
             }
             
-            // التحقق من الاسم
             const name = document.getElementById('name').value.trim();
+            const contact = document.getElementById('contact').value.trim();
+            const photoFile = document.getElementById('photoInput').files[0];
+            
             if (!name) {
                 alert('يرجى إدخال الاسم');
                 return;
             }
             
-            // التحقق من طريقة التواصل
-            const contact = document.getElementById('contact').value.trim();
             if (!contact) {
                 alert('يرجى إدخال البريد الإلكتروني أو رقم التواصل');
                 return;
             }
             
-            // التحقق من الصورة
-            const photoFile = document.getElementById('photoInput').files[0];
             if (!photoFile) {
                 alert('يرجى رفع الصورة الشخصية');
                 return;
             }
             
-            // إظهار رسالة التحميل وإخفاء الرسائل الأخرى
+            // تعطيل الزر أثناء الإرسال
+            document.getElementById('submitBtn').disabled = true;
             document.getElementById('loading').style.display = 'block';
             document.getElementById('successMessage').style.display = 'none';
             document.getElementById('errorMessage').style.display = 'none';
             
+            // استخدام setTimeout لمحاكاة عملية الحفظ
             setTimeout(() => {
                 try {
-                    // جمع البيانات
                     const role = document.getElementById('role').value;
                     const timestamp = new Date().toLocaleString('ar-EG');
                     
                     // إنشاء كائن البيانات
                     const registrationData = {
-                        id: Date.now(),
+                        id: Date.now(), // استخدام الطابع الزمني كمعرف فريد
                         name: name,
                         role: role,
                         contact: contact,
@@ -593,7 +635,7 @@
                         timestamp: timestamp
                     };
                     
-                    // حفظ البيانات في Local Storage
+                    // حفظ البيانات في localStorage
                     saveRegistration(registrationData);
                     
                     // إظهار رسالة النجاح
@@ -603,7 +645,7 @@
                     // تحديث العداد
                     updateRegistrationsCount();
                     
-                    // إعادة تعيين النموذج
+                    // إعادة تعيين النموذج بعد 3 ثواني
                     setTimeout(() => {
                         document.getElementById('registrationForm').reset();
                         document.querySelectorAll('.role-option').forEach(opt => {
@@ -613,61 +655,78 @@
                         document.getElementById('photoPreview').style.display = 'none';
                         currentPhotoDataUrl = '';
                         document.getElementById('successMessage').style.display = 'none';
+                        document.getElementById('submitBtn').disabled = false;
                     }, 3000);
                     
                 } catch (error) {
                     // في حالة حدوث خطأ
                     document.getElementById('loading').style.display = 'none';
                     document.getElementById('errorMessage').style.display = 'block';
+                    document.getElementById('submitBtn').disabled = false;
                     console.error('Error:', error);
                 }
-            }, 1000);
+            }, 1500); // محاكاة وقت الانتظار
         });
 
-        // دالة لحفظ التسجيل
+        // دالة لحفظ التسجيل في localStorage
         function saveRegistration(registrationData) {
-            let registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
-            registrations.push(registrationData);
-            localStorage.setItem('rapZoomRegistrations', JSON.stringify(registrations));
+            try {
+                let registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
+                registrations.push(registrationData);
+                localStorage.setItem('rapZoomRegistrations', JSON.stringify(registrations));
+                return true;
+            } catch (error) {
+                console.error('Error saving registration:', error);
+                return false;
+            }
         }
 
         // دالة لتحديث عدد المسجلين
         function updateRegistrationsCount() {
-            const registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
-            document.getElementById('totalRegistrations').textContent = registrations.length;
-            document.getElementById('registrationsCount').textContent = registrations.length;
+            try {
+                const registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
+                document.getElementById('totalRegistrations').textContent = registrations.length;
+                document.getElementById('registrationsCount').textContent = registrations.length;
+            } catch (error) {
+                console.error('Error updating count:', error);
+            }
         }
 
-        // دالة لعرض قاعدة البيانات (للمبرمج فقط)
+        // دالة لعرض قاعدة البيانات
         function showDatabase() {
-            document.getElementById('formSection').style.display = 'none';
-            document.getElementById('databaseSection').style.display = 'block';
-            
-            const registrationsList = document.getElementById('registrationsList');
-            const registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
-            
-            if (registrations.length === 0) {
-                registrationsList.innerHTML = '<div class="empty-database">لا توجد تسجيلات حتى الآن</div>';
-                return;
+            try {
+                document.getElementById('formSection').style.display = 'none';
+                document.getElementById('databaseSection').style.display = 'block';
+                
+                const registrationsList = document.getElementById('registrationsList');
+                const registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
+                
+                if (registrations.length === 0) {
+                    registrationsList.innerHTML = '<div class="empty-database">لا توجد تسجيلات حتى الآن</div>';
+                    return;
+                }
+                
+                registrationsList.innerHTML = '';
+                registrations.forEach(reg => {
+                    const registrationItem = document.createElement('div');
+                    registrationItem.className = 'registration-item';
+                    registrationItem.innerHTML = `
+                        <div class="registration-header">
+                            <div class="registration-name">${reg.name}</div>
+                            <div class="registration-role">${reg.role}</div>
+                        </div>
+                        <div class="registration-details">
+                            <div>📞 ${reg.contact}</div>
+                            <div>🕒 ${reg.timestamp}</div>
+                        </div>
+                        ${reg.photo ? `<img src="${reg.photo}" class="registration-photo" alt="صورة ${reg.name}">` : ''}
+                    `;
+                    registrationsList.appendChild(registrationItem);
+                });
+            } catch (error) {
+                console.error('Error showing database:', error);
+                alert('خطأ في عرض البيانات');
             }
-            
-            registrationsList.innerHTML = '';
-            registrations.forEach(reg => {
-                const registrationItem = document.createElement('div');
-                registrationItem.className = 'registration-item';
-                registrationItem.innerHTML = `
-                    <div class="registration-header">
-                        <div class="registration-name">${reg.name}</div>
-                        <div class="registration-role">${reg.role}</div>
-                    </div>
-                    <div class="registration-details">
-                        <div>📞 ${reg.contact}</div>
-                        <div>🕒 ${reg.timestamp}</div>
-                    </div>
-                    ${reg.photo ? `<img src="${reg.photo}" class="registration-photo" alt="صورة ${reg.name}">` : ''}
-                `;
-                registrationsList.appendChild(registrationItem);
-            });
         }
 
         // دالة للعودة إلى النموذج
@@ -701,24 +760,32 @@
         }
 
         function exportData() {
-            const registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
-            const dataStr = JSON.stringify(registrations, null, 2);
-            const dataBlob = new Blob([dataStr], { type: 'application/json' });
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'rap_zoom_registrations.json';
-            link.click();
-            alert('تم تصدير البيانات بنجاح!');
+            try {
+                const registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
+                const dataStr = JSON.stringify(registrations, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'rap_zoom_registrations.json';
+                link.click();
+                alert('تم تصدير البيانات بنجاح!');
+            } catch (error) {
+                alert('خطأ في تصدير البيانات');
+            }
         }
 
         function clearData() {
             if (confirm('⚠️ هل أنت متأكد من مسح جميع البيانات؟ لا يمكن التراجع عن هذا الإجراء!')) {
-                localStorage.removeItem('rapZoomRegistrations');
-                alert('تم مسح جميع البيانات');
-                updateRegistrationsCount();
-                if (document.getElementById('databaseSection').style.display === 'block') {
-                    showDatabase();
+                try {
+                    localStorage.removeItem('rapZoomRegistrations');
+                    alert('تم مسح جميع البيانات');
+                    updateRegistrationsCount();
+                    if (document.getElementById('databaseSection').style.display === 'block') {
+                        showDatabase();
+                    }
+                } catch (error) {
+                    alert('خطأ في مسح البيانات');
                 }
             }
         }
