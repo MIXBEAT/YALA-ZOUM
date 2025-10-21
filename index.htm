@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>يلا زوم - التسجيل في برنامج راب زوم</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .phone-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #1c1c1e;
+            border-radius: 40px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            border: 2px solid #333;
+        }
+        
+        .phone-notch {
+            width: 40%;
+            height: 30px;
+            background-color: #000;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0 0 15px 15px;
+            z-index: 10;
+        }
+        
+        .screen {
+            background-color: #000;
+            border-radius: 30px;
+            padding: 20px;
+            margin-top: 10px;
+            min-height: 600px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-top: 10px;
+        }
+        
+        .logo {
+            font-weight: 900;
+            font-size: 32px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-weight: 600;
+            font-size: 16px;
+            color: #aaa;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 15px;
+            background-color: #1c1c1e;
+            border: 2px solid #333;
+            border-radius: 12px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #007AFF;
+        }
+        
+        .photo-upload {
+            border: 2px dashed #333;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .photo-upload:hover {
+            border-color: #007AFF;
+            background-color: #1c1c1e;
+        }
+        
+        .upload-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        .upload-text {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .photo-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+            border-radius: 12px;
+            display: none;
+            border: 2px solid #333;
+        }
+        
+        .role-selection {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .role-option {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            background-color: #1c1c1e;
+            border: 2px solid #333;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        
+        .role-option.selected {
+            background-color: #007AFF;
+            border-color: #007AFF;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background-color: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #0056CC;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+            color: #007AFF;
+        }
+
+        .success-message {
+            display: none;
+            background-color: #30D158;
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 700;
+        }
+
+        .error-message {
+            display: none;
+            background-color: #FF453A;
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 700;
+        }
+
+        .instructions {
+            background-color: #1c1c1e;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .database-section {
+            display: none;
+            margin-top: 30px;
+            border-top: 2px solid #333;
+            padding-top: 20px;
+        }
+
+        .database-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #007AFF;
+            text-align: center;
+        }
+
+        .registration-item {
+            background-color: #1c1c1e;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+        }
+
+        .registration-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .registration-name {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .registration-role {
+            background-color: #007AFF;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .registration-details {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .registration-photo {
+            max-width: 100%;
+            max-height: 120px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .empty-database {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+            font-style: italic;
+        }
+
+        .admin-login {
+            display: none;
+            background-color: #1c1c1e;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 2px solid #007AFF;
+        }
+
+        .admin-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #007AFF;
+            text-align: center;
+        }
+
+        .password-input {
+            margin-bottom: 15px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .admin-controls {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .admin-btn {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .admin-btn.export {
+            background-color: #30D158;
+        }
+
+        .admin-btn.clear {
+            background-color: #FF453A;
+        }
+
+        .admin-btn.view {
+            background-color: #007AFF;
+        }
+
+        .secret-admin-access {
+            position: absolute;
+            top: 15px;
+            right: 30px;
+            width: 50px;
+            height: 30px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .developer-guide {
+            display: none;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .guide-title {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .guide-steps {
+            text-align: right;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="phone-notch"></div>
+        
+        <!-- زر سري للمبرمج - النقر عليه يفتح لوحة التحكم -->
+        <button class="secret-admin-access" onclick="showAdminLogin()" title="وصول المبرمج"></button>
+
+        <div class="screen">
+            <div class="header">
+                <div class="logo">يلا زوم</div>
+                <div class="subtitle">التسجيل في برنامج راب زوم</div>
+            </div>
+
+            <!-- دليل المبرمج -->
+            <div class="developer-guide" id="developerGuide">
+                <div class="guide-title">
+                <div class="guide-steps">
+                   سجل الان <strong></strong></div>
+                    <div>    </div>
+                    <div>    </div>
+                </div>
+            </div>
+            
+            <div id="formSection">
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="name">الاسم</label>
+                        <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكامل">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>الصورة الشخصية</label>
+                        <div class="photo-upload" id="photoUpload">
+                            <div class="upload-icon">📷</div>
+                            <div class="upload-text">انقر لرفع صورتك</div>
+                        </div>
+                        <img id="photoPreview" class="photo-preview" alt="معاينة الصورة">
+                        <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>اختر دورك</label>
+                        <div class="role-selection">
+                            <div class="role-option" data-role="رابر">رابر</div>
+                            <div class="role-option" data-role="بروديوسر">بروديوسر</div>
+                        </div>
+                        <input type="hidden" id="role" name="role" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact">البريد الإلكتروني أو رقم التواصل</label>
+                        <input type="text" id="contact" name="contact" required placeholder="example@gmail.com أو 0123456789">
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">تسجيل المشاركة</button>
+                    
+                    <div class="loading" id="loading">
+                        ⏳ جاري حفظ البيانات...
+                    </div>
+                    
+                    <div class="success-message" id="successMessage">
+                        ✅ تم تسجيلك بنجاح في برنامج راب زوم!
+                    </div>
+                    
+                    <div class="error-message" id="errorMessage">
+                        ❌ حدث خطأ أثناء التسجيل. يرجى المحاولة مرة أخرى.
+                    </div>
+                </form>
+
+                <!-- قسم التحكم للمبرمج -->
+                <div class="admin-login" id="adminLogin">
+                    <div class="admin-title">🔧 دخول المبرمج</div>
+                    <div class="form-group password-input">
+                        <input type="password" id="adminPassword" placeholder="أدخل كلمة المرور" style="text-align: center;">
+                    </div>
+                    <button class="login-btn" onclick="checkAdminPassword()">دخول</button>
+                    <div class="error-message" id="adminError" style="display: none;">
+                        كلمة المرور غير صحيحة
+                    </div>
+                </div>
+
+                <div class="admin-controls" id="adminControls">
+                    <div class="admin-title">🎛️ لوحة تحكم المبرمج</div>
+                    <button class="admin-btn view" onclick="showDatabase()">👥 عرض المسجلين</button>
+                    <button class="admin-btn export" onclick="exportData()">💾 تصدير البيانات</button>
+                    <button class="admin-btn clear" onclick="clearData()">🗑️ مسح الكل</button>
+                    <button class="admin-btn" onclick="hideAdmin()">❌ إخفاء</button>
+                    
+                    <div style="margin-top: 15px; font-size: 12px; color: #aaa;">
+                        📊 إجمالي المسجلين: <span id="totalRegistrations">0</span>
+                    </div>
+                </div>
+
+                <div class="instructions">
+                    <strong>معلومات للمستخدم:</strong><br>
+                    - املأ النموذج للتسجيل في برنامج راب زوم<br>
+                    - البيانات تحفظ تلقائياً في النظام<br>
+                    - للتسجيل فقط، لا حاجة لعرض البيانات
+                </div>
+            </div>
+
+            <div class="database-section" id="databaseSection">
+                <div class="database-title">📊 قائمة المسجلين في راب زوم</div>
+                <div style="text-align: center; margin-bottom: 15px; color: #007AFF;">
+                    إجمالي المسجلين: <strong id="registrationsCount">0</strong>
+                </div>
+                <div id="registrationsList"></div>
+                <button class="admin-btn" onclick="showForm()" style="width: 100%; margin-top: 15px;">
+                    ↩ العودة للتحكم
+                </button>
+            </div>
+            
+            <div class="footer">
+                © 2025 يلا زوم - جميع الحقوق محفوظة
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPhotoDataUrl = '';
+        const ADMIN_PASSWORD = "00110022"; // كلمة المرور السرية للمبرمج
+
+        // عند تحميل الصفحة، إظهار دليل المبرمج لفترة وجيزة
+        window.addEventListener('load', function() {
+            document.getElementById('developerGuide').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('developerGuide').style.display = 'none';
+            }, 10000); // يختفي بعد 10 ثواني
+            
+            updateRegistrationsCount();
+        });
+
+        // اختيار الدور (رابر أو بروديوسر)
+        document.querySelectorAll('.role-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.role-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+                document.getElementById('role').value = this.getAttribute('data-role');
+            });
+        });
+        
+        // رفع الصورة وعرض معاينة
+        document.getElementById('photoUpload').addEventListener('click', function() {
+            document.getElementById('photoInput').click();
+        });
+        
+        document.getElementById('photoInput').addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                document.querySelector('.upload-text').textContent = file.name;
+                
+                // عرض معاينة الصورة
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentPhotoDataUrl = e.target.result;
+                    document.getElementById('photoPreview').src = currentPhotoDataUrl;
+                    document.getElementById('photoPreview').style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // إرسال النموذج
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // التحقق من اختيار الدور
+            if (!document.getElementById('role').value) {
+                alert('يرجى اختيار دورك (رابر أو بروديوسر)');
+                return;
+            }
+            
+            // التحقق من الاسم
+            const name = document.getElementById('name').value.trim();
+            if (!name) {
+                alert('يرجى إدخال الاسم');
+                return;
+            }
+            
+            // التحقق من طريقة التواصل
+            const contact = document.getElementById('contact').value.trim();
+            if (!contact) {
+                alert('يرجى إدخال البريد الإلكتروني أو رقم التواصل');
+                return;
+            }
+            
+            // التحقق من الصورة
+            const photoFile = document.getElementById('photoInput').files[0];
+            if (!photoFile) {
+                alert('يرجى رفع الصورة الشخصية');
+                return;
+            }
+            
+            // إظهار رسالة التحميل وإخفاء الرسائل الأخرى
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            
+            setTimeout(() => {
+                try {
+                    // جمع البيانات
+                    const role = document.getElementById('role').value;
+                    const timestamp = new Date().toLocaleString('ar-EG');
+                    
+                    // إنشاء كائن البيانات
+                    const registrationData = {
+                        id: Date.now(),
+                        name: name,
+                        role: role,
+                        contact: contact,
+                        photo: currentPhotoDataUrl,
+                        timestamp: timestamp
+                    };
+                    
+                    // حفظ البيانات في Local Storage
+                    saveRegistration(registrationData);
+                    
+                    // إظهار رسالة النجاح
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // تحديث العداد
+                    updateRegistrationsCount();
+                    
+                    // إعادة تعيين النموذج
+                    setTimeout(() => {
+                        document.getElementById('registrationForm').reset();
+                        document.querySelectorAll('.role-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        document.querySelector('.upload-text').textContent = 'انقر لرفع صورتك';
+                        document.getElementById('photoPreview').style.display = 'none';
+                        currentPhotoDataUrl = '';
+                        document.getElementById('successMessage').style.display = 'none';
+                    }, 3000);
+                    
+                } catch (error) {
+                    // في حالة حدوث خطأ
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('errorMessage').style.display = 'block';
+                    console.error('Error:', error);
+                }
+            }, 1000);
+        });
+
+        // دالة لحفظ التسجيل
+        function saveRegistration(registrationData) {
+            let registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
+            registrations.push(registrationData);
+            localStorage.setItem('rapZoomRegistrations', JSON.stringify(registrations));
+        }
+
+        // دالة لتحديث عدد المسجلين
+        function updateRegistrationsCount() {
+            const registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
+            document.getElementById('totalRegistrations').textContent = registrations.length;
+            document.getElementById('registrationsCount').textContent = registrations.length;
+        }
+
+        // دالة لعرض قاعدة البيانات (للمبرمج فقط)
+        function showDatabase() {
+            document.getElementById('formSection').style.display = 'none';
+            document.getElementById('databaseSection').style.display = 'block';
+            
+            const registrationsList = document.getElementById('registrationsList');
+            const registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
+            
+            if (registrations.length === 0) {
+                registrationsList.innerHTML = '<div class="empty-database">لا توجد تسجيلات حتى الآن</div>';
+                return;
+            }
+            
+            registrationsList.innerHTML = '';
+            registrations.forEach(reg => {
+                const registrationItem = document.createElement('div');
+                registrationItem.className = 'registration-item';
+                registrationItem.innerHTML = `
+                    <div class="registration-header">
+                        <div class="registration-name">${reg.name}</div>
+                        <div class="registration-role">${reg.role}</div>
+                    </div>
+                    <div class="registration-details">
+                        <div>📞 ${reg.contact}</div>
+                        <div>🕒 ${reg.timestamp}</div>
+                    </div>
+                    ${reg.photo ? `<img src="${reg.photo}" class="registration-photo" alt="صورة ${reg.name}">` : ''}
+                `;
+                registrationsList.appendChild(registrationItem);
+            });
+        }
+
+        // دالة للعودة إلى النموذج
+        function showForm() {
+            document.getElementById('databaseSection').style.display = 'none';
+            document.getElementById('formSection').style.display = 'block';
+        }
+
+        // وظائف التحكم للمبرمج
+        function showAdminLogin() {
+            document.getElementById('adminLogin').style.display = 'block';
+            document.getElementById('developerGuide').style.display = 'block';
+        }
+
+        function checkAdminPassword() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === ADMIN_PASSWORD) {
+                document.getElementById('adminLogin').style.display = 'none';
+                document.getElementById('adminControls').style.display = 'block';
+                document.getElementById('adminError').style.display = 'none';
+                document.getElementById('developerGuide').style.display = 'none';
+                updateRegistrationsCount();
+            } else {
+                document.getElementById('adminError').style.display = 'block';
+            }
+        }
+
+        function hideAdmin() {
+            document.getElementById('adminControls').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+        }
+
+        function exportData() {
+            const registrations = JSON.parse(localStorage.getItem('rapZoomRegistrations') || '[]');
+            const dataStr = JSON.stringify(registrations, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'rap_zoom_registrations.json';
+            link.click();
+            alert('تم تصدير البيانات بنجاح!');
+        }
+
+        function clearData() {
+            if (confirm('⚠️ هل أنت متأكد من مسح جميع البيانات؟ لا يمكن التراجع عن هذا الإجراء!')) {
+                localStorage.removeItem('rapZoomRegistrations');
+                alert('تم مسح جميع البيانات');
+                updateRegistrationsCount();
+                if (document.getElementById('databaseSection').style.display === 'block') {
+                    showDatabase();
+                }
+            }
+        }
+    </script>
+</body>
+</html>
